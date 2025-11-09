@@ -91,13 +91,82 @@ public class Vetor {
 
     public static void quicksortPorAno(ObservableList<Filme> filmes){
         System.out.println("Realizando QuickSort por ano");
+        quicksortAnoRec(filmes, 0, filmes.size() - 1);
+    }
+
+    private static void quicksortAnoRec(ObservableList<Filme> filmes, int inicio, int fim){
+        if (inicio < fim) {
+            int pivoIndex = particionarPorAno(filmes, inicio, fim);
+            quicksortAnoRec(filmes, inicio, pivoIndex - 1);
+            quicksortAnoRec(filmes, pivoIndex + 1, fim);
+        }
+    }
+
+    private static int particionarPorAno(ObservableList<Filme> filmes, int inicio, int fim){
+        int pivo = filmes.get(fim).getAnoAsInt();
+        int i = inicio - 1;
+
+        for (int j = inicio; j < fim; j++) {
+            if (filmes.get(j).getAnoAsInt() <= pivo) {
+                i++;
+                Collections.swap(filmes, i, j);
+            }
+        }
+        Collections.swap(filmes, i + 1, fim);
+        return i + 1;
     }
 
     public static void quicksortPorDuracao(ObservableList<Filme> filmes){
         System.out.println("Realizando QuickSort por duração");
+        quicksortDuracaoRec(filmes, 0, filmes.size() - 1);
+    }
+
+    private static void quicksortDuracaoRec(ObservableList<Filme> filmes, int inicio, int fim){
+        if (inicio < fim) {
+            int pivoIndex = particionarPorDuracao(filmes, inicio, fim);
+            quicksortDuracaoRec(filmes, inicio, pivoIndex - 1);
+            quicksortDuracaoRec(filmes, pivoIndex + 1, fim);
+        }
+    }
+
+    private static int particionarPorDuracao(ObservableList<Filme> filmes, int inicio, int fim){
+        int pivo = filmes.get(fim).getDuracaoAsInt();
+        int i = inicio - 1;
+
+        for (int j = inicio; j < fim; j++) {
+            if (filmes.get(j).getDuracaoAsInt() <= pivo) {
+                i++;
+                Collections.swap(filmes, i, j);
+            }
+        }
+        Collections.swap(filmes, i + 1, fim);
+        return i + 1;
     }
 
     public static void quicksortPorTitulo(ObservableList<Filme> filmes){
         System.out.println("Realizando QuickSort por título");
+        quicksortTituloRec(filmes, 0, filmes.size() - 1);
+    }
+
+    private static void quicksortTituloRec(ObservableList<Filme> filmes, int inicio, int fim){
+        if (inicio < fim) {
+            int pivoIndex = particionarPorTitulo(filmes, inicio, fim);
+            quicksortTituloRec(filmes, inicio, pivoIndex - 1);
+            quicksortTituloRec(filmes, pivoIndex + 1, fim);
+        }
+    }
+
+    private static int particionarPorTitulo(ObservableList<Filme> filmes, int inicio, int fim){
+        String pivo = filmes.get(fim).getTitulo().toLowerCase();
+        int i = inicio - 1;
+
+        for (int j = inicio; j < fim; j++) {
+            if (filmes.get(j).getTitulo().toLowerCase().compareTo(pivo) <= 0) {
+                i++;
+                Collections.swap(filmes, i, j);
+            }
+        }
+        Collections.swap(filmes, i + 1, fim);
+        return i + 1;
     }
 }

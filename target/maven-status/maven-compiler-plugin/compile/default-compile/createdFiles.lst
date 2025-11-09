@@ -1,0 +1,8 @@
+ra\catalogo\interfaces\JanelaPrincipal.class
+ra\catalogo\Main.class
+ra\catalogo\estruturas\Vetor.class
+ra\catalogo\models\Arquivista.class
+ra\catalogo\models\Filme.class
+ra\catalogo\interfaces\JanelaAdicaoDeFilme.class
+ra\catalogo\estruturas\TabelaHashFilme.class
+ra\catalogo\interfaces\JanelaOrdenacao.class
