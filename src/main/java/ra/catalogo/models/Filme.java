@@ -21,6 +21,14 @@ public class Filme implements Serializable{
         return ano;
     }
 
+    public int getAnoAsInt(){
+        return Integer.parseInt(ano);
+    }
+
+    public int getDuracaoAsInt(){
+        return Integer.parseInt(duracao);
+    }
+
     public String getDuracao() {
         return duracao;
     }

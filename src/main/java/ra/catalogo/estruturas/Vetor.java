@@ -1,5 +1,7 @@
 package ra.catalogo.estruturas;
 
+import java.util.Collections;
+
 import javafx.collections.ObservableList;
 import ra.catalogo.models.Filme;
 
@@ -14,9 +16,9 @@ public class Vetor {
         opcoes = opcoes.toLowerCase(); // garantir consistência
 
         if (opcoes.contains("bubblesort")) {
-            if (opcoes.contains("ano")) bubblesortPorAno(filmes);
-            else if (opcoes.contains("duracao")) bubblesortPorDuracao(filmes);
-            else if (opcoes.contains("titulo")) bubblesortPorTitulo(filmes);
+            if (opcoes.contains("ano")) bubblesortPorAno(filmes, filmes.size());
+            else if (opcoes.contains("duracao")) bubblesortPorDuracao(filmes, filmes.size());
+            else if (opcoes.contains("titulo")) bubblesortPorTitulo(filmes, filmes.size());
         } 
         else if (opcoes.contains("insertionsort")) {
             if (opcoes.contains("ano")) insertionsortPorAno(filmes);
@@ -33,16 +35,46 @@ public class Vetor {
         }
     }
 
-    public static void bubblesortPorAno(ObservableList<Filme> filmes){
-        System.out.println("Realizando BubbleSort por ano");
+    public static void bubblesortPorAno(ObservableList<Filme> filmes, int tamanho){
+        if (tamanho == 1) return;
+
+        // uma "passada" do BubbleSort: empurra o maior pro final
+        for (int i = 0; i < tamanho - 1; i++) {
+            if (filmes.get(i).getAnoAsInt() > filmes.get(i + 1).getAnoAsInt()) {
+                Collections.swap(filmes, i, i + 1);
+            }
+        }
+
+        // chamada recursiva ignorando o último elemento
+        bubblesortPorAno(filmes, tamanho - 1);
     }
 
-    public static void bubblesortPorDuracao(ObservableList<Filme> filmes){
-        System.out.println("Realizando BubbleSort por duração");
+    public static void bubblesortPorDuracao(ObservableList<Filme> filmes, int tamanho){
+        if (tamanho == 1) return;
+
+        // uma "passada" do BubbleSort: empurra o maior pro final
+        for (int i = 0; i < tamanho - 1; i++) {
+            if (filmes.get(i).getDuracaoAsInt() > filmes.get(i + 1).getDuracaoAsInt()) {
+                Collections.swap(filmes, i, i + 1);
+            }
+        }
+
+        // chamada recursiva ignorando o último elemento
+        bubblesortPorDuracao(filmes, tamanho - 1);
     }
 
-    public static void bubblesortPorTitulo(ObservableList<Filme> filmes){
-        System.out.println("Realizando BubbleSort por título");
+    public static void bubblesortPorTitulo(ObservableList<Filme> filmes, int tamanho){
+        if (tamanho == 1) return;
+
+        // uma "passada" do BubbleSort: empurra o maior pro final
+        for (int i = 0; i < tamanho - 1; i++) {
+            if (filmes.get(i).getTitulo().compareTo( filmes.get(i + 1).getTitulo() ) > 0) {
+                Collections.swap(filmes, i, i + 1);
+            }
+        }
+
+        // chamada recursiva ignorando o último elemento
+        bubblesortPorTitulo(filmes, tamanho - 1);
     }
 
     public static void insertionsortPorAno(ObservableList<Filme> filmes){
