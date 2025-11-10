@@ -79,14 +79,62 @@ public class Vetor {
 
     public static void insertionsortPorAno(ObservableList<Filme> filmes){
         System.out.println("Realizando InsertionSort por ano");
+        ordenarPorAno(filmes, filmes.size());
+    }
+
+    private static void ordenarPorAno(ObservableList<Filme> filmes, int n){
+        if(n <= 1) return;
+        ordenarPorAno(filmes, n - 1);
+        Filme ultimo = filmes.get(n - 1);
+        inserirPorAno(filmes, n - 2, ultimo);
+    }
+    private static void inserirPorAno(ObservableList<Filme> filmes, int j, Filme ultimo){
+        if(j < 0 || filmes.get(j).getAnoAsInt() <= ultimo.getAnoAsInt()){
+            filmes.set(j + 1, ultimo);
+            return;
+        }
+        filmes.set(j + 1, filmes.get(j));
+        inserirPorAno(filmes, j - 1, ultimo);
     }
 
     public static void insertionsortPorDuracao(ObservableList<Filme> filmes){
         System.out.println("Realizando InsertionSort por duração");
+        ordenarPorDuracao(filmes, filmes.size());
+    }
+
+    private static void ordenarPorDuracao(ObservableList<Filme> filmes, int n){
+        if(n <= 1) return;
+        ordenarPorDuracao(filmes, n - 1);
+        Filme ultimo = filmes.get(n - 1);
+        inserirPorDuracao(filmes, n - 2, ultimo);
+    }
+    private static void inserirPorDuracao(ObservableList<Filme> filmes, int j, Filme ultimo){
+        if(j < 0 || filmes.get(j).getDuracaoAsInt() <= ultimo.getDuracaoAsInt()){
+            filmes.set(j + 1, ultimo);
+            return;
+        }
+        filmes.set(j + 1, filmes.get(j));
+        inserirPorDuracao(filmes, j - 1, ultimo);
     }
 
     public static void insertionsortPorTitulo(ObservableList<Filme> filmes){
         System.out.println("Realizando InsertionSort por título");
+        ordenarPorTitulo(filmes, filmes.size());
+    }
+
+    private static void ordenarPorTitulo(ObservableList<Filme> filmes, int n){
+        if(n <= 1) return;
+        ordenarPorTitulo(filmes, n - 1);
+        Filme ultimo = filmes.get(n - 1);
+        inserirPorTitulo(filmes, n - 2, ultimo);
+    }
+    private static void inserirPorTitulo(ObservableList<Filme> filmes, int j, Filme ultimo){
+        if(j < 0 || filmes.get(j).getTitulo().compareToIgnoreCase(ultimo.getTitulo()) <= 0){
+            filmes.set(j + 1, ultimo);
+            return;
+        }
+        filmes.set(j + 1, filmes.get(j));
+        inserirPorTitulo(filmes, j - 1, ultimo);
     }
 
     public static void quicksortPorAno(ObservableList<Filme> filmes){
